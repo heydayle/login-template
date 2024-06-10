@@ -1,33 +1,37 @@
 <script setup lang="ts">
-
-import IconDowntime  from '@/assets/svg/downtime.svg'
-import IconFaster  from '@/assets/svg/faster.svg'
-import IconMonitor  from '@/assets/svg/monitor.svg'
-import IconIncident  from '@/assets/svg/incident.svg'
-import GradientShape  from '@/assets/images/gradient-shape.png'
+import IconDowntime from '@/assets/svg/downtime.svg'
+import IconFaster from '@/assets/svg/faster.svg'
+import IconMonitor from '@/assets/svg/monitor.svg'
+import IconIncident from '@/assets/svg/incident.svg'
+import GradientShape from '@/assets/images/gradient-shape.png'
 const Benefits = [
   {
     icon: IconDowntime,
     title: 'Spot downtime and help you debug',
-    description: 'We spot downtime and help you debug, and resolve problems in the fastest time. Save efforts and lower the risk of downtime.'
+    description:
+      'We spot downtime and help you debug, and resolve problems in the fastest time. Save efforts and lower the risk of downtime.'
   },
   {
     icon: IconFaster,
     title: 'Spot and resolve downtime faster',
-    description: 'Monitor every aspect of your website from anywhere globally, immediate alerts, automatic escalation and resolve issues quickly.'
+    description:
+      'Monitor every aspect of your website from anywhere globally, immediate alerts, automatic escalation and resolve issues quickly.'
   },
   {
     icon: IconMonitor,
     title: 'Uptime monitoring',
-    description: 'Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging'
+    description:
+      'Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging'
   },
   {
     icon: IconIncident,
     title: 'Incident management',
-    description: 'Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging'
-  },
+    description:
+      'Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging'
+  }
 ]
-const Benefit_Heading = '<span class="font-bold text-4xl text-heading mb-10 whitespace-pre-line leading-7">Downtime happens? No problem!\n Get 100 monitors within 5\n minutes <span class="font-bold text-[#00FF94E5]">for free</span></span>'
+const Benefit_Heading =
+  '<span class="font-bold text-4xl text-heading mb-10 whitespace-pre-line leading-7">Downtime happens? No problem!\n Get 100 monitors within 5\n minutes <span class="font-bold text-[#00FF94E5]">for free</span></span>'
 </script>
 
 <template>
@@ -47,12 +51,10 @@ const Benefit_Heading = '<span class="font-bold text-4xl text-heading mb-10 whit
       </div>
     </div>
     <div class="relative flex flex-1">
-      <img class="absolute bottom-0" :src="GradientShape" alt="content">
-      <img class="mt-auto relative z-10 px-20" src="@/assets/images/content.png" alt="content">
+      <img class="absolute bottom-0" :src="GradientShape" alt="content" />
+      <img class="mt-auto relative z-10 px-20" src="@/assets/images/content.png" alt="content" />
     </div>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

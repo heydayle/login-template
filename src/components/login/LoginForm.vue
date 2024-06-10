@@ -27,28 +27,30 @@ const loginState = useStorage<ILoginState>('login-state', {
 const loginSchema = object({
   email: string().required().email(),
   password: string().required(),
-  remember: boolean(),
+  remember: boolean()
 })
 const onSubmit = async (values: Record<string, any>) => {
   try {
-    loading.value= true
+    loading.value = true
     const data = {
       email: values.email,
-      password: values.password,
+      password: values.password
     }
     const res = await login(data)
     if (res.data.status) {
-      loginState.value = rememberMe.value ? data : {
-        email: '',
-        password: ''
-      }
+      loginState.value = rememberMe.value
+        ? data
+        : {
+            email: '',
+            password: ''
+          }
     }
     toast.success('Login success')
     router.push('/')
   } catch (e) {
     toast.error('Login fail')
   } finally {
-    loading.value= false
+    loading.value = false
   }
 }
 const onRememberMeChange = (value: any) => {
@@ -65,50 +67,75 @@ const onRememberMeChange = (value: any) => {
       <p class="font-bold text-heading">Welcome back</p>
       <p class="text-secondary text-base">Welcome back! Please enter your details.</p>
     </div>
-    <Form class="w-full flex flex-col space-y-4 text-base" :validation-schema="loginSchema"  @submit="onSubmit">
+    <Form
+      class="w-full flex flex-col space-y-4 text-base"
+      :validation-schema="loginSchema"
+      @submit="onSubmit"
+    >
       <div>
         <label class="inline-block mb-1 text-medium text-sm">Email</label>
-        <Field v-model="loginState.email" name="email" placeholder="Enter your email" class="form-input" aria-autocomplete="none" />
+        <Field
+          v-model="loginState.email"
+          name="email"
+          placeholder="Enter your email"
+          class="form-input"
+          aria-autocomplete="none"
+        />
         <ErrorMessage name="email" class="message-error" />
       </div>
       <div class="relative">
         <label class="inline-block mb-1 text-medium text-sm">Passwords</label>
-        <Field v-model="loginState.password" name="password" placeholder="Enter your passwords" :type="showPassword ? 'text' : 'password'" class="form-input" />
+        <Field
+          v-model="loginState.password"
+          name="password"
+          placeholder="Enter your passwords"
+          :type="showPassword ? 'text' : 'password'"
+          class="form-input"
+        />
         <ErrorMessage name="password" class="message-error" />
-        <span class="absolute bottom-2 right-3 text-black" @click.stop="showPassword = !showPassword" role="button">
+        <span
+          class="absolute bottom-2 right-3 text-black"
+          @click.stop="showPassword = !showPassword"
+          role="button"
+        >
           <IconEyeShow v-if="showPassword" class="w-6 text-medium" />
           <IconEyeHidden v-else class="w-6" />
         </span>
       </div>
       <div class="flex justify-between">
         <div class="flex items-center space-x-2">
-          <input v-model="rememberMe" type="checkbox" class="mt-.5" @change="onRememberMeChange"> <p class="font-semibold">Remember me</p>
+          <input v-model="rememberMe" type="checkbox" class="mt-.5" @change="onRememberMeChange" />
+          <p class="font-semibold">Remember me</p>
         </div>
-        <router-link to="/forgot-password" class="font-bold text-primary hover:underline">Forgot password</router-link>
+        <router-link to="/forgot-password" class="font-bold text-primary hover:underline"
+          >Forgot password</router-link
+        >
       </div>
       <button type="submit" class="bg-primary p-4 text-white rounded-2xl font-bold">
         <IconLoading v-if="loading" class="text-sm text-white m-auto" />
         <span v-else>Log in</span>
       </button>
       <div class="w-full flex justify-between items-center space-x-4">
-        <hr class="bg-medium flex-1 h-[1px]">
+        <hr class="bg-medium flex-1 h-[1px]" />
         <span class="font-semibold text-medium">OR</span>
-        <hr class="bg-medium flex-1 h-[1px]">
+        <hr class="bg-medium flex-1 h-[1px]" />
       </div>
       <LoginWithGoogle />
     </Form>
     <div class="w-full text-center text-base">
       <span class="text-tertiary mr-1">Don’t have an account?</span>
-      <router-link to="/sign-up" class="font-bold text-primary hover:underline">Sign up</router-link>
+      <router-link to="/sign-up" class="font-bold text-primary hover:underline"
+        >Sign up</router-link
+      >
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .form-input {
-  @apply px-4 py-3 bg-subtle/[6%] w-full rounded-xl text-base
+  @apply px-4 py-3 bg-subtle/[6%] w-full rounded-xl text-base;
 }
 .message-error {
-  @apply text-base text-red-500 mt-1 inline-block
+  @apply text-base text-red-500 mt-1 inline-block;
 }
 </style>
