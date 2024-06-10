@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { boolean, object, string } from 'yup'
+import { object, string } from 'yup'
 import LoginWithGoogle from '@/components/login/LoginWithGoogle.vue'
 import { login } from '@/api/auth'
 import { toast } from 'vue-sonner'
@@ -11,10 +11,13 @@ import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { useRouter } from 'vue-router'
 
+// region [Interface]
 interface ILoginState {
   email: string
   password: string
 }
+// endregion
+// region [State]
 const router = useRouter()
 const loading = ref<boolean>(false)
 const showPassword = ref<boolean>(false)
@@ -24,7 +27,8 @@ const loginState = useStorage<ILoginState>('login-state', {
   email: 'success@gmail.com',
   password: '123123'
 })
-
+// endregion
+// region [Validation & Submit]
 const loginSchema = object({
   email: string().required().email(),
   password: string().required().min(6)
@@ -55,20 +59,28 @@ const onSubmit = async (values: Record<string, any>) => {
     loading.value = false
   }
 }
+// endregion
+// region [Remember]
 const onRememberMeChange = (value: any) => {
   rememberMe.value = value.target.checked
 }
+// endregion
 </script>
 
 <template>
   <div class="flex flex-col items-center justify-center space-y-8 m-auto w-[360px]">
+    <!-- region @Logo-->
     <div class="rounded-2xl mx-auto shadow-2xl p-4 w-fit">
       <img src="@/assets/images/logo.png" class="w-[55px]" alt="logo" />
     </div>
+    <!-- endregion-->
+    <!-- region @Heading-->
     <div class="text-black text-center">
       <p class="font-bold text-heading">Welcome back</p>
       <p class="text-secondary text-base">Welcome back! Please enter your details.</p>
     </div>
+    <!-- endregion-->
+    <!-- region @Input Form-->
     <Form
       class="w-full flex flex-col space-y-4 text-base"
       :validation-schema="loginSchema"
@@ -107,7 +119,7 @@ const onRememberMeChange = (value: any) => {
       <div class="flex justify-between">
         <div class="flex items-center space-x-2">
           <input v-model="rememberMe" type="checkbox" class="mt-.5" @change="onRememberMeChange" />
-          <p class="font-semibold">Remember me</p>
+          <p class="font-semibold" @click="rememberMe = !rememberMe" role="button">Remember me</p>
         </div>
         <router-link to="/forgot-password" class="font-bold text-primary hover:underline">
           Forgot password
@@ -124,12 +136,15 @@ const onRememberMeChange = (value: any) => {
       </div>
       <LoginWithGoogle />
     </Form>
+    <!-- endregion-->
+    <!-- region @Optional-->
     <div class="w-full text-center text-base">
       <span class="text-tertiary mr-1">Don’t have an account?</span>
-      <router-link to="/sign-up" class="font-bold text-primary hover:underline"
-        >Sign up</router-link
-      >
+      <router-link to="/sign-up" class="font-bold text-primary hover:underline">
+        Sign up
+      </router-link>
     </div>
+    <!-- endregion-->
   </div>
 </template>
 
