@@ -46,7 +46,6 @@ const onSubmit = async (values: Record<string, any>) => {
           }
     }
     toast.success('Login success')
-    await router.push('/')
   } catch (e) {
     toast.error('Login fail')
   } finally {

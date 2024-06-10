@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import Login from '../views/LoginView.vue'
 
 const router = createRouter({
@@ -7,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'login',
+      component: Login
     },
     {
       path: '/about',
@@ -18,11 +17,6 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    }
   ]
 })
 
