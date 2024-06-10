@@ -27,8 +27,7 @@ const loginState = useStorage<ILoginState>('login-state', {
 
 const loginSchema = object({
   email: string().required().email(),
-  password: string().required(),
-  remember: boolean()
+  password: string().required().min(6)
 })
 const onSubmit = async (values: Record<string, any>) => {
   try {
@@ -76,7 +75,7 @@ const onRememberMeChange = (value: any) => {
       @submit="onSubmit"
     >
       <div>
-        <label class="inline-block mb-1 text-medium text-sm">Email</label>
+        <label class="inline-block mb-1 text-medium text-sm font-semibold">Email</label>
         <Field
           v-model="loginState.email"
           name="email"
@@ -87,7 +86,7 @@ const onRememberMeChange = (value: any) => {
         <ErrorMessage name="email" class="message-error" />
       </div>
       <div class="relative">
-        <label class="inline-block mb-1 text-medium text-sm">Passwords</label>
+        <label class="inline-block mb-1 text-medium text-sm font-semibold">Passwords</label>
         <Field
           v-model="loginState.password"
           name="password"
@@ -97,7 +96,7 @@ const onRememberMeChange = (value: any) => {
         />
         <ErrorMessage name="password" class="message-error" />
         <span
-          class="absolute bottom-2 right-3 text-black"
+          class="absolute top-9 right-3 text-black"
           @click.stop="showPassword = !showPassword"
           role="button"
         >
@@ -110,13 +109,13 @@ const onRememberMeChange = (value: any) => {
           <input v-model="rememberMe" type="checkbox" class="mt-.5" @change="onRememberMeChange" />
           <p class="font-semibold">Remember me</p>
         </div>
-        <router-link to="/forgot-password" class="font-bold text-primary hover:underline"
-          >Forgot password</router-link
-        >
+        <router-link to="/forgot-password" class="font-bold text-primary hover:underline">
+          Forgot password
+        </router-link>
       </div>
-      <button type="submit" class="bg-primary p-4 text-white rounded-2xl font-bold">
+      <button type="submit" class="bg-primary p-4 text-white rounded-xl">
         <IconLoading v-if="loading" class="text-sm text-white m-auto" />
-        <span v-else>Log in</span>
+        <span v-else class="font-bold">Log in</span>
       </button>
       <div class="w-full flex justify-between items-center space-x-4">
         <hr class="bg-medium flex-1 h-[1px]" />
