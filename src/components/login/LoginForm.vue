@@ -54,11 +54,6 @@ const onSubmit = async (values: Record<string, any>) => {
 const onRememberMeChange = (value: any) => {
   rememberMe.value = value.target.checked
 }
-onMounted(() => {
-  if (rememberMe.value && loginState.value) {
-
-  }
-})
 </script>
 
 <template>
