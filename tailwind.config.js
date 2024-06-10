@@ -10,7 +10,8 @@ export default {
         primary: '#005BFF',
         secondary: '#52525B',
         tertiary: '#475467',
-        medium: '#A1A1AA'
+        medium: '#52525B',
+        subtle: '#37475D'
       }
     },
     fontSize: {

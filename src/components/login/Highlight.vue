@@ -27,14 +27,14 @@ const Benefits = [
     description: 'Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging'
   },
 ]
-const Benefit_Heading = '<span class="font-bold text-4xl text-heading mb-10 whitespace-pre-line">Downtime happens? No problem!\n Get 100 monitors within 5\n minutes <span class="font-bold text-[#00FF94E5]">for free</span></span>'
+const Benefit_Heading = '<span class="font-bold text-4xl text-heading mb-10 whitespace-pre-line leading-7">Downtime happens? No problem!\n Get 100 monitors within 5\n minutes <span class="font-bold text-[#00FF94E5]">for free</span></span>'
 </script>
 
 <template>
-  <div class="h-full flex flex-col text-white bg-gradient-to-b from-[#001033] from-100% pt-32">
+  <div class="h-full flex flex-col text-white bg-gradient-to-b from-[#001033] from-100% pt-[108px]">
     <div class="flex-1 px-20">
       <h1 v-html="Benefit_Heading" />
-      <div>
+      <div class="relative z-20">
         <div v-for="(item, index) in Benefits" :key="index" class="flex space-x-8 py-4">
           <div class="flex items-center">
             <Component :is="item.icon" />
