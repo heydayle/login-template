@@ -7,7 +7,7 @@ import { toast } from 'vue-sonner'
 import IconLoading from '@/assets/svg/loading.svg'
 import IconEyeHidden from '@/assets/svg/hidden.svg'
 import IconEyeShow from '@/assets/svg/show.svg'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import router from '@/router'
 
@@ -46,7 +46,7 @@ const onSubmit = async (values: Record<string, any>) => {
           }
     }
     toast.success('Login success')
-    router.push('/')
+    await router.push('/')
   } catch (e) {
     toast.error('Login fail')
   } finally {
