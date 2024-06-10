@@ -9,15 +9,16 @@ import IconEyeHidden from '@/assets/svg/hidden.svg'
 import IconEyeShow from '@/assets/svg/show.svg'
 import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
-import router from '@/router'
+import { useRouter } from 'vue-router'
 
 interface ILoginState {
   email: string
   password: string
 }
-
+const router = useRouter()
 const loading = ref<boolean>(false)
 const showPassword = ref<boolean>(false)
+const isLogged = useStorage<boolean>('logged', false)
 const rememberMe = useStorage<boolean>('remember-me', false)
 const loginState = useStorage<ILoginState>('login-state', {
   email: 'success@gmail.com',
@@ -38,16 +39,19 @@ const onSubmit = async (values: Record<string, any>) => {
     }
     const res = await login(data)
     if (res.data.status) {
+      isLogged.value = true
       loginState.value = rememberMe.value
         ? data
         : {
             email: '',
             password: ''
           }
+      toast.success('Login success')
+      router.push('/home')
     }
-    toast.success('Login success')
   } catch (e) {
     toast.error('Login fail')
+    isLogged.value = false
   } finally {
     loading.value = false
   }
